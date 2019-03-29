@@ -58,52 +58,6 @@ GROUP  BY t.start_station,
 ORDER  BY s.dockcount ASC;
 
 
--- (Challenge) What's the length of the longest trip for each day it rains anywhere?   
-SELECT DISTINCT q.date, 
-                q.max, 
-                q.trip_id 
-FROM   (SELECT Max(t.duration), 
-               w.date, 
-               t.trip_id 
-        FROM   trips t 
-               JOIN weather w 
-                 ON w.date = LEFT(t.start_date, 10) 
-        WHERE  w.precipitationin > 0 
-                OR w.events LIKE '%Rain%' 
-        GROUP  BY w.date, 
-                  t.trip_id) AS q 
-ORDER  BY q.date ASC; 
-
-
--- (Challenge) What's the length of the longest trip for each day it rains anywhere?   
-SELECT DISTINCT q.date, 
-                q.max 
-FROM   (SELECT Max(t.duration), 
-               w.date 
-        FROM   trips t 
-               JOIN weather w 
-                 ON w.date = LEFT(t.start_date, 10) 
-        WHERE  w.precipitationin > 0 
-                OR w.events LIKE '%Rain%' 
-        GROUP  BY w.date) AS q 
-ORDER  BY q.date ASC; 
-
-
--- (Challenge) What's the length of the longest trip for each day it rains anywhere?   
-SELECT DISTINCT q.date, 
-                q.max, 
-                q.trip_id 
-FROM   (SELECT Max(t.duration), 
-               w.date, 
-               t.trip_id 
-        FROM   trips t 
-               JOIN weather w 
-                 ON w.date = LEFT(t.start_date, 10) 
-        WHERE  w.precipitationin > 0 
-                OR w.events LIKE '%Rain%' 
-        GROUP  BY w.date, 
-                  t.trip_id) AS q 
-ORDER  BY q.date ASC; 
 
 
 -- (Challenge) What's the length of the longest trip for each day it rains anywhere?   
